@@ -1,0 +1,7 @@
+# ⚠️ Замените ваш-домен.ru на реальный домен сайта
+
+User-agent: *
+Allow: /
+Disallow: /node_modules/
+
+Sitemap: https://ваш-домен.ru/sitemap.xml

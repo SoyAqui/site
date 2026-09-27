@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Краткое описание новости для поисковых систем (1-2 предложения)">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Заголовок новости — Храм ап. Андрея Первозванного г. Ульяновск">
+    <meta property="og:description" content="Описание новости">
+    <meta property="og:locale" content="ru_RU">
+    <title>Заголовок новости — Храм ап. Андрея Первозванного г. Ульяновск</title>
+    <link rel="stylesheet" href="../css/style.min.css" />
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-content-row">
+                <div class="header-logo-block">
+                    <div class="header-logo-wrapper">
+                        <img src="../assets/images/header.png" alt="Храм" class="header-logo" />
+                    </div>
+                </div>
+                <div class="header-text-block">
+                    <div class="header-text">
+                        <h1>Храм во имя святого апостола Андрея Первозванного г. Ульяновска</h1>
+                        <p class="blessing">По благословению митрополита Симбирского и Новоспасского Лонгина</p>
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="Основная навигация">
+                <a href="../index.html">Главная</a>
+                <a href="../about.html">О жизни прихода</a>
+                <a href="../school.html">Воскресная школа</a>
+                <a href="../sacraments.html">Таинства Церкви</a>
+                <a href="../benefactors.html">Благотворителям</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <article>
+            <!-- Заголовок новости -->
+            <h1>Крестный ход с Плащаницей Пресвятой Богородицы.</h1>
+            
+            <!-- Основной текст -->
+            <p>Плакали апостолы, когда жизнь Матери Света, как тихая заря после Божественного Солнца Христа сиявшая для Церкви, угасла пред их очами. Плакали горькими слезами естественной печали, но вместе и сладкими слезами благодатного умиления: потому что вера в неумирающую благодать Матери Господней и чувство благоговейной любви к Ней господствовали над чувством лишения. Полное же и совершенное утешение получили они, конечно, тогда, когда, в третий день по Ее Успении, ради опоздавшего к Ее погребению Фомы, отверзши гроб Ее, не обрели пречистого тела Ее, и вслед за тем увидели Ее в славе воскресения, и от Ней Самой услышали слово утешения: «Радуйтесь, яко с вами есмь во вся дни». Если радость, которую подает воскресшая Матерь Божия, имеет своим источником присутствие Матери Божией с нами во все дни, то очевидно, что и радость, как поток из сего источника, должна протекать по всем временам, до впадения в море вечного блаженства.</p>
+            <p>Святитель Филарет Московский.</p>
+
+            <!-- ГАЛЕРЕЯ ИЗОБРАЖЕНИЙ -->
+            <!-- 
+                АВТОМАТИЧЕСКАЯ ГАЛЕРЕЯ:
+                
+                1. Положите фото в папку: assets/images/news/news_N/
+                2. Запустите: npm run thumbnails
+                3. В js/news-config.js добавьте имена фото в массив photos:
+                   photos: ['photo1.jpg', 'photo2.jpg', 'photo3.jpg']
+                Галерея создастся автоматически!
+            -->
+            
+            <div class="news-gallery" id="auto-gallery"></div>
+        </article>
+    </main>
+    
+    <!-- Lightbox для просмотра фото в полном размере -->
+    <div id="lightbox" class="lightbox" style="display:none;">
+        <img src="" alt="">
+    </div>
+    <script>
+        // Lightbox инициализируется автоматически через news-renderer.js
+    </script>
+    <!-- Подключение конфигурации и рендеринга новостей -->
+    <script defer src="../js/news-config.js"></script>
+    <script defer src="../js/news-renderer.js"></script>
+</body>
+</html>

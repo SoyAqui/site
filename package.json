@@ -1,0 +1,15 @@
+{
+  "name": "syte2.0",
+  "version": "2.0.0",
+  "description": "Сайт прихода православного храма",
+  "scripts": {
+    "thumbnails": "node js/generate-thumbnails.js",
+    "favicon": "node js/generate-favicon.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.35.4"
+  }
+}

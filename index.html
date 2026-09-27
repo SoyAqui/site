@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/icons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/icons/icon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/icons/icon-180.png" />
+    <meta name="description" content="Сайт прихода храма апостола Андрея Первозванного г. Ульяновска: расписание богослужений, новости, объявления." />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Приход Храма ап. Андрея Первозванного г. Ульяновск — Главная" />
+    <meta property="og:description" content="Сайт прихода храма апостола Андрея Первозванного г. Ульяновска: расписание богослужений, новости, объявления." />
+    <meta property="og:locale" content="ru_RU" />
+
+    <link rel="preconnect" href="https://code.jquery.com" crossorigin />
+    <link rel="preconnect" href="https://script.pravoslavie.ru" crossorigin />
+
+    <title>Приход Храма ап. Андрея Первозванного г. Ульяновск — Главная</title>
+    <link rel="stylesheet" href="css/style.min.css" />
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            <div class="header-content-row">
+                <div class="header-logo-block">
+                    <div class="header-logo-wrapper">
+                        <img src="assets/images/header.png" alt="Храм" class="header-logo" />
+                    </div>
+                </div>
+                <div class="header-text-block">
+                    <div class="header-text">
+                        <h1>Храм во имя святого апостола Андрея Первозванного г. Ульяновска</h1>
+                        <p class="blessing">По благословению митрополита Симбирского и Новоспасского Лонгина</p>
+                    </div>
+                </div>
+                <button class="burger-menu" aria-label="Открыть меню" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <nav aria-label="Основная навигация" class="main-nav">
+                <a href="index.html">Главная</a>
+                <a href="about.html">О жизни прихода</a>
+                <a href="school.html">Воскресная школа</a>
+                <a href="sacraments.html">Таинства Церкви</a>
+                <a href="benefactors.html">Благотворителям</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h1>Добро пожаловать в наш Храм</h1>
+        <section class="info-block">
+            <div class="info-column">
+                <img src="assets/images/schedule/schedule.jpg" alt="Расписание богослужений" class="schedule-img" fetchpriority="high" onerror="this.src='https://via.placeholder.com/400x600?text=Расписание+загружается'" />
+            </div>
+            <div class="info-column right-column">
+                <div class="column-section announcements-section">
+                    <div id="announcement-container" class="announcement-container">
+                        <div class="announcement-wrapper">
+                            <img id="announcement-img" src="assets/images/announcements/ann1.jpg" alt="Объявление" fetchpriority="high" loading="eager" />
+                            <button class="announcement-nav announcement-prev" aria-label="Предыдущее объявление">&laquo;</button>
+                            <button class="announcement-nav announcement-next" aria-label="Следующее объявление">&raquo;</button>
+                            <div id="announcement-dots" class="announcement-dots"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="two-windows-section">
+            <div class="window left-window">
+                <div id="news-grid" class="news-grid-6"></div>
+            </div>
+            <div class="window right-window">
+                <div class="calendar-wrapper">
+                    <script src="https://script.pravoslavie.ru/calendar.php"></script>
+                </div>
+            </div>
+        </section>
+        <section class="two-windows-section school-section">
+            <div class="window left-window">
+                <a href="school/kids.html" class="school-link">
+                    <h2>Воскресная школа для детей</h2>
+                    <p>Занятия для детей от 6 до 12 лет</p>
+                </a>
+            </div>
+            <div class="window right-window">
+                <a href="school/adults.html" class="school-link">
+                    <h2>Воскресная школа для взрослых</h2>
+                    <p>Занятия и изучение веры</p>
+                </a>
+            </div>
+        </section>
+        <section class="help-block">
+            <h2>Если:</h2>
+            <div class="help-grid">
+                <a href="sacraments.html#baptism" class="help-btn">Вы решили крестить ребенка или сами креститься</a>
+                <a href="sacraments.html#godparent" class="help-btn">Вас пригласили стать крестным или крестной</a>
+                <a href="sacraments.html#wedding" class="help-btn">Вы решили венчаться</a>
+                <a href="sacraments.html#unction" class="help-btn">Вы решили собороваться</a>
+                <a href="sacraments.html#communion" class="help-btn">Вы решили Причаститься</a>
+                <a href="sacraments.html#confession_meeting" class="help-btn">Вы хотите поговорить с батюшкой</a>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-contacts">
+                <p><strong>Адрес:</strong> г. Ульяновск, пр-т Сурова, 4б</p>
+                <p><strong>Настоятель, о. Роман:</strong> +7 987 377 87 01</p>
+                <p><strong>Лавка:</strong> +7 927 827 82 15</p>
+                <p><strong>Эл. почта:</strong> Novel1994solodko@mail.ru</p>
+            </div>
+            <div class="footer-social">
+                <a href="https://vk.ru/apostolandrey" target="_blank" rel="noopener noreferrer">
+                    <img src="assets/images/footer/vkontakte.png" alt="ВКонтакте">
+                </a>
+            </div>
+        </div>
+    </footer>
+    <script defer src="js/news-config.js"></script>
+    <script defer src="js/news-renderer.js"></script>
+    <script defer src="js/announcements-config.js"></script>
+    <script defer src="js/announcements.js"></script>
+    <script defer src="js/constrain-calendar.js"></script>
+    <script defer src="js/burger-menu.js"></script>
+</body>
+</html>

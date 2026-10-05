@@ -11,6 +11,22 @@
 
 window.newsData = [
 {
+    id: 'news-22',
+    title: 'Посещение детского стационара больницы имени Святого Апостола Андрея Первозванного!',
+    thumbnail: 'assets/images/news/news_22/news-22-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg'
+    ]
+  },
+
+{
     id: 'news-21',
     title: 'Всенощное бдение в канун дня празднования Всемирного Воздвижения Честного и Животворящего Креста Господня ',
     thumbnail: 'assets/images/news/news_21/news-21-thumb.webp',

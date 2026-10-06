@@ -11,6 +11,21 @@
 
 window.newsData = [
 {
+    id: 'news-23',
+    title: 'Духовенство третьего благочиния совершили молебен с акафистом перед ковчегом с частью Пояса Пресвятой Богородицы в Спасо-Вознесенском соборе',
+    thumbnail: 'assets/images/news/news_23/news-23-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg'      
+    ]
+  },
+
+{
     id: 'news-22',
     title: 'Посещение детского стационара больницы имени Святого Апостола Андрея Первозванного!',
     thumbnail: 'assets/images/news/news_22/news-22-thumb.webp',

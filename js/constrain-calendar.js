@@ -17,11 +17,28 @@ function constrainCalendar() {
 }
 
 // Применяем после загрузки скрипта календаря
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', constrainCalendar);
-} else {
-    setTimeout(constrainCalendar, 1000);
+// Ждём, пока календарь загрузится, затем применяем стили
+function waitAndConstrain(maxAttempts, delay) {
+    var attempts = 0;
+    function check() {
+        attempts++;
+        var wrapper = document.querySelector('.calendar-wrapper');
+        if (!wrapper) return;
+        
+        // Проверяем, загрузился ли календарь (есть ли внутри iframe или контент)
+        var hasContent = wrapper.querySelector('iframe, .calendar, table, .event') || wrapper.innerHTML.trim() !== '';
+        
+        if (hasContent || attempts > maxAttempts) {
+            constrainCalendar();
+            return;
+        }
+        
+        setTimeout(check, delay);
+    }
+    setTimeout(check, delay);
 }
+
+waitAndConstrain(50, 200); // Максимум 10 секунд
 
 // Наблюдаем за изменениями DOM
 var observer = new MutationObserver(function() {

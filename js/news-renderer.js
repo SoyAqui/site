@@ -2,6 +2,11 @@
  * Рендеринг новостей и галереи
  */
 
+// Конфигурация пагинации
+var PAGINATION_ENABLED = true;
+var ITEMS_PER_PAGE = 10;
+var currentPage = 1;
+
 // Экранирование HTML для безопасности при вставке пользовательского контента
 function escapeHtml(text) {
     var div = document.createElement('div');
@@ -20,10 +25,10 @@ document.addEventListener('DOMContentLoaded', function() {
         mainGrid.dataset.rendered = 'true';
     }
 
-    // Рендеринг в Архиве (все новости)
+    // Рендеринг в Архиве (пагинация)
     var archiveList = document.getElementById('archive-list');
     if (archiveList && !archiveList.dataset.rendered) {
-        renderNewsArchive(archiveList, window.newsData);
+        renderNewsArchivePaginated(archiveList, window.newsData);
         archiveList.dataset.rendered = 'true';
     }
 
@@ -163,19 +168,89 @@ function renderNewsCards(container, items) {
     });
 }
 
-// Функция отрисовки архива (для Archive-страницы)
-function renderNewsArchive(container, items) {
-    container.innerHTML = '';
-
+// Функция отрисовки архива с пагинацией
+function renderNewsArchivePaginated(container, items) {
     if (!items || items.length === 0) {
         container.innerHTML = '<p>Новостей пока нет</p>';
         return;
     }
 
-    var list = document.createElement('ul');
-    list.className = 'archive-list';
+    var totalPages = Math.ceil(items.length / ITEMS_PER_PAGE);
+    currentPage = 1;
 
-    items.forEach(function(item) {
+    renderCurrentPage(container, items, totalPages);
+
+    // Создаём элементы пагинации
+    var paginationDiv = document.createElement('div');
+    paginationDiv.className = 'news-pagination';
+    paginationDiv.id = 'news-pagination';
+
+    // Кнопка «Назад»
+    var prevBtn = document.createElement('a');
+    prevBtn.href = '#';
+    prevBtn.className = 'disabled';
+    prevBtn.textContent = '« Назад';
+    prevBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (currentPage > 1) {
+            currentPage--;
+            renderCurrentPage(container, items, totalPages);
+            updatePagination(paginationDiv, currentPage, totalPages);
+        }
+    });
+    paginationDiv.appendChild(prevBtn);
+
+    // Номерa страниц
+    for (var i = 1; i <= totalPages; i++) {
+        (function(page) {
+            var link = document.createElement('a');
+            link.href = '#';
+            link.textContent = page;
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentPage = page;
+                renderCurrentPage(container, items, totalPages);
+                updatePagination(paginationDiv, currentPage, totalPages);
+            });
+            paginationDiv.appendChild(link);
+        })(i);
+    }
+
+    // Кнопка «Вперёд»
+    var nextBtn = document.createElement('a');
+    nextBtn.href = '#';
+    nextBtn.textContent = 'Вперёд »';
+    nextBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        if (currentPage < totalPages) {
+            currentPage++;
+            renderCurrentPage(container, items, totalPages);
+            updatePagination(paginationDiv, currentPage, totalPages);
+        }
+    });
+    paginationDiv.appendChild(nextBtn);
+
+    container.appendChild(paginationDiv);
+}
+
+// Рендерит текущую страницу
+function renderCurrentPage(container, items, totalPages) {
+    var start = (currentPage - 1) * ITEMS_PER_PAGE;
+    var end = start + ITEMS_PER_PAGE;
+    var pageItems = items.slice(start, end);
+
+    // Находим существующий список или создаём новый
+    var list = container.querySelector('.archive-list');
+    if (!list) {
+        list = document.createElement('ul');
+        list.className = 'archive-list';
+        container.appendChild(list);
+    }
+
+    // Обновляем содержимое списка
+    list.innerHTML = '';
+
+    pageItems.forEach(function(item) {
         var fullUrl = item.fullPageUrl || 'news/' + item.id + '.html';
         var thumbSrc = item.thumbnail || '';
         var safeTitle = escapeHtml(item.title || 'Без заголовка');
@@ -193,6 +268,38 @@ function renderNewsArchive(container, items) {
             '</div>';
         list.appendChild(li);
     });
+}
 
-    container.appendChild(list);
+// Обновляет состояние кнопок пагинации
+function updatePagination(paginationDiv, current, total) {
+    var links = paginationDiv.querySelectorAll('a');
+    var prevBtn = links[0];
+    var nextBtn = links[links.length - 1];
+
+    // Обновляем «Назад»
+    if (current > 1) {
+        prevBtn.className = '';
+    } else {
+        prevBtn.className = 'disabled';
+    }
+
+    // Обновляем «Вперёд»
+    if (current < total) {
+        nextBtn.className = '';
+    } else {
+        nextBtn.className = 'disabled';
+    }
+
+    // Обновляем активную страницу
+    for (var i = 1; i <= total; i++) {
+        var link = links[i];
+        if (link) {
+            link.className = (i === current) ? 'current' : '';
+        }
+    }
+}
+
+// Устаревшая функция (оставлена для совместимости)
+function renderNewsArchive(container, items) {
+    renderNewsArchivePaginated(container, items);
 }

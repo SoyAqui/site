@@ -1,7 +1,8 @@
-# ⚠️ Замените ваш-домен.ru на реальный домен сайта
+# Robots.txt для сайта прихода
+# https://apostolandrey.ru
 
 User-agent: *
 Allow: /
 Disallow: /node_modules/
 
-Sitemap: https://ваш-домен.ru/sitemap.xml
+Sitemap: https://apostolandrey.ru/sitemap.xml

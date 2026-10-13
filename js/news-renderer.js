@@ -68,15 +68,11 @@ function generateAutoGallery() {
 
         html += '<a href="../' + folder + filename + '" class="lightbox-link">\n';
         html += '    <picture>\n';
-        html += '        <source media="(min-width: 768px)" srcset="../' + folder + 'thumbs/' + name + '-800.jpg 800w,\n';
-        html += '                ../' + folder + filename + ' 1200w" type="image/jpeg">\n';
-        html += '        <source media="(min-width: 768px)" srcset="../' + folder + 'thumbs/' + name + '-800.webp 800w,\n';
-        html += '                ../' + folder + filename + ' 1200w" type="image/webp">\n';
         html += '        <source srcset="../' + folder + 'thumbs/' + name + '-400.webp 1x,\n';
         html += '                ../' + folder + 'thumbs/' + name + '-800.webp 2x" type="image/webp">\n';
-        html += '        <source srcset="../' + folder + 'thumbs/' + name + '-400.jpg 1x,\n';
-        html += '                ../' + folder + 'thumbs/' + name + '-800.jpg 2x" type="image/jpeg">\n';
-        html += '        <img src="../' + folder + 'thumbs/' + name + '-800.jpg" alt="' + alt + '" loading="lazy" decoding="async">\n';
+        html += '        <source srcset="../' + folder + filename + ' 400w,\n';
+        html += '                ../' + folder + filename + ' 800w" type="image/jpeg">\n';
+        html += '        <img src="../' + folder + filename + '" alt="' + alt + '" loading="lazy" decoding="async">\n';
         html += '    </picture>\n';
         html += '</a>\n';
     });

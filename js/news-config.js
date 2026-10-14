@@ -10,6 +10,26 @@
  */
 
 window.newsData = [
+
+    {
+    id: 'news-26',
+    title: 'Всенощное бдение и Божественная Литургия в день празднования Покрова Пресвятой Владычицы нашей Богородицы и Приснодевы Марии',
+    thumbnail: 'assets/images/news/news_26/news-26-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg',
+      '11.jpg'
+    ]
+  },
+  
 {
     id: 'news-25',
     title: 'Посещение детского стационара больницы имени Святого Апостола Андрея Первозванного',
@@ -27,7 +47,7 @@ window.newsData = [
 
 {
     id: 'news-24',
-    title: 'Всенощное бдение и Литургия в канун недели 19-й по Пятидесятнице в Храме Святого Апостола Андрея Первозванного!',
+    title: 'Всенощное бдение в канун недели 19-й по Пятидесятнице и Божественная Литургия в Храме Святого Апостола Андрея Первозванного!',
     thumbnail: 'assets/images/news/news_24/news-24-thumb.webp',
     photos: [
       '1.jpg',
@@ -305,32 +325,89 @@ window.newsData = [
   {
     id: 'news-6',
     title: 'Молебен в больнице Святого Апостола Андрея Первозванного',
-    thumbnail: 'assets/images/news/news_6/news-6-thumb.webp'
+    thumbnail: 'assets/images/news/news_6/news-6-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg'      
+    ]
   },
   {
     id: 'news-5',
     title: 'Паломническая поездка в г. Казань',
-    thumbnail: 'assets/images/news/news_5/news-5-thumb.webp'
+    thumbnail: 'assets/images/news/news_5/news-5-thumb.webp',
+    photos: [
+          '1.jpg',
+          '2.jpg',
+          '3.jpg',
+          '4.jpg',
+          '5.jpg',
+          '6.jpg',
+          '7.jpg',
+          '8.jpg'        
+        ]
   },
   {
     id: 'news-4',
     title: 'Божественная литургия в храме Святого Апостола Андрея Первозванного!',
-    thumbnail: 'assets/images/news/news_4/news-4-thumb.webp'
+    thumbnail: 'assets/images/news/news_4/news-4-thumb.webp',
+    photos: [
+        '1.jpg',
+        '2.jpg',
+        '3.jpg',
+        '4.jpg',
+        '5.jpg',
+        '6.jpg',
+        '7.jpg',
+        '8.jpg'        
+      ]
   },
   {
     id: 'news-3',
     title: 'Молебен св. блаженной Матроне',
-    thumbnail: 'assets/images/news/news_3/news-3-thumb.webp'
+    thumbnail: 'assets/images/news/news_3/news-3-thumb.webp',
+    photos: [
+          '1.jpg',
+          '2.jpg',
+          '3.jpg',
+          '4.jpg',
+          '5.jpg',
+          '6.jpg'
+      ]  
   },
   {
     id: 'news-2',
     title: 'Крестный ход',
-    thumbnail: 'assets/images/news/news_2/news-2-thumb.webp'
+    thumbnail: 'assets/images/news/news_2/news-2-thumb.webp',
+    photos: [
+        '1.jpg',
+        '2.jpg',
+        '3.jpg',
+        '4.jpg',
+        '5.jpg',
+        '6.jpg',
+        '7.jpg'
+      ]
   },
   {
     id: 'news-1',
     title: 'Божественная литургия в храме во имя святого пророка Илии г. Ульяновска',
-    thumbnail: 'assets/images/news/news_1/news-1-thumb.webp'
+    thumbnail: 'assets/images/news/news_1/news-1-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg'
+    ]
   },
   
 

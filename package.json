@@ -4,7 +4,8 @@
   "description": "Сайт прихода православного храма",
   "scripts": {
     "thumbnails": "node js/generate-thumbnails.js",
-    "favicon": "node js/generate-favicon.js"
+    "favicon": "node js/generate-favicon.js",
+    "sitemap": "node js/generate-sitemap.js"
   },
   "keywords": [],
   "author": "",

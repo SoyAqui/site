@@ -2,40 +2,32 @@
  * sw.js — Service Worker для кэширования и автообновления сайта
  * 
  * Работает так:
- * 1. При первом заходе сохраняет CSS, JS, изображения в кэш браузера
- * 2. При каждом заходе проверяет сервер: "а не обновились файлы?"
- * 3. Если да — обновляет кэш и просит перезагрузить страницу
- * 4. Новые страницы кэшируются автоматически при первом посещении
+ * 1. При первом заходе сохраняет CSS, JS в кэш браузера
+ * 2. HTML-страницы и изображения — всегда проверяют сервер (свежие данные)
+ * 3. При изменении файлов — показывает "Обновить?"
  * 
  * Подключение: добавьте в <head> каждой HTML-страницы:
  *   <script src="sw-register.js"></script>
  */
 
-const CACHE_NAME = 'site-cache-v1';
+const CACHE_NAME = 'site-cache-v2';
 
-// Начальный кэш — статические файлы
-const INITIAL_ASSETS = [
-    '/',
-    '/index.html',
-    '/about.html',
-    '/benefactors.html',
-    '/sacraments.html',
-    '/school.html',
+// Что кэшируем (только статику)
+const STATIC_ASSETS = [
     '/css/style.min.css',
     '/js/news-renderer.js',
     '/js/news-config.js',
     '/js/burger-menu.js',
     '/assets/images/header.png',
     '/assets/images/footer/vkontakte.png',
-    '/assets/images/base.jpg',
 ];
 
-// Установка Service Worker — сохраняем начальные файлы
+// Установка — кэшируем статику
 self.addEventListener('install', event => {
     event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-            console.log('Service Worker: кэширую начальные файлы');
-            return cache.addAll(INITIAL_ASSETS);
+            console.log('Service Worker: кэширую статику');
+            return cache.addAll(STATIC_ASSETS);
         })
     );
     self.skipWaiting();
@@ -53,26 +45,48 @@ self.addEventListener('activate', event => {
     self.clients.claim();
 });
 
-// Запрос — кэшируем всё, что видим
+// Запрос — HTML и изображения ВСЕГДА с сервера
 self.addEventListener('fetch', event => {
+    const url = event.request.url;
+    
     // Пропускаем внешние запросы
-    if (!event.request.url.startsWith(self.location.origin)) return;
+    if (!url.startsWith(self.location.origin)) return;
 
-    event.respondWith(
-        fetch(event.request).then(response => {
-            // Если ответ успешный, сохраняем в кэш
-            if (response && response.status === 200) {
-                const responseToCache = response.clone();
-                caches.open(CACHE_NAME).then(cache => {
-                    cache.put(event.request, responseToCache);
-                });
-            }
-            return response;
-        }).catch(() => {
-            // Если сети нет, пробуем из кэша
+    // HTML-страницы — всегда свежие
+    if (url.endsWith('.html')) {
+        event.respondWith(fetch(event.request));
+        return;
+    }
+
+    // Изображения — всегда свежие (не кэшируем!)
+    if (/\.(jpg|jpeg|png|webp|gif|svg|ico)$/i.test(url)) {
+        event.respondWith(fetch(event.request).catch(() => {
             return caches.match(event.request);
-        })
-    );
+        }));
+        return;
+    }
+
+    // CSS/JS — из кэша, если есть, иначе с сервера
+    if (/\.(css|js)$/i.test(url)) {
+        event.respondWith(
+            caches.match(event.request).then(cached => {
+                return cached || fetch(event.request).then(response => {
+                    // Кэшируем при первом запросе
+                    if (response && response.status === 200) {
+                        const responseToCache = response.clone();
+                        caches.open(CACHE_NAME).then(cache => {
+                            cache.put(event.request, responseToCache);
+                        });
+                    }
+                    return response;
+                });
+            })
+        );
+        return;
+    }
+
+    // Всё остальное — с сервера
+    event.respondWith(fetch(event.request));
 });
 
 // Уведомление об обновлении

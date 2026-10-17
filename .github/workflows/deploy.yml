@@ -1,0 +1,42 @@
+name: Deploy HTML Site to Timeweb
+
+# Скрипт запускается сам при каждом push в ветку main
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Upload Files
+    runs-on: ubuntu-latest
+
+    steps:
+    # 1. GitHub скачивает файлы из репозитория
+    - name: Get latest code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 2
+
+    # 2. GitHub отправляет их по FTP на Timeweb
+    - name: Sync files via FTP
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        protocol: ftps
+        port: 21
+        
+        # Путь к сайту на Timeweb
+        server-dir: /home/c/cw411091/apostolandrey/public_html/
+        
+        # Игнорируем служебные файлы
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/.github/**
+          **/README.md
+          **/node_modules/**
+          **/package*.json
+          **/js/cache-buster.js

@@ -16,10 +16,10 @@ if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js').then(registration => {
         console.log('Service Worker зарегистрирован');
 
-        // Проверяем обновления каждую минуту
+        // Проверяем обновления КАЖДЫЕ 30 секунд (чаще, чем было)
         setInterval(() => {
             registration.update();
-        }, 60 * 1000);
+        }, 30 * 1000);
 
         // Слушаем обновление
         registration.addEventListener('updatefound', () => {
@@ -33,6 +33,10 @@ if ('serviceWorker' in navigator) {
                 }
             });
         });
+
+        // При загрузке страницы проверяем сразу
+        registration.update();
+
     }).catch(error => {
         console.log('Ошибка регистрации Service Worker:', error);
     });

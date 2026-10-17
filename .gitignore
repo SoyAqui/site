@@ -1,0 +1,16 @@
+# Зависимости Node.js
+node_modules/
+package-lock.json
+
+# Временные файлы
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE (раскомментировать, если нужно)
+# .vscode/
+# .idea/
+# *.swp
+# *.swo

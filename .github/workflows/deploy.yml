@@ -38,8 +38,8 @@ jobs:
         protocol: ftp
         port: 21
         
-        # Путь к сайту на Timeweb
-        server-dir: /home/c/cw411091/site_apostolandrey/public_html/
+        # Путь к сайту на Timeweb (относительно home)
+        server-dir: site_apostolandrey/public_html/
         
         # Игнорируем служебные файлы
         exclude: |

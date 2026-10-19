@@ -1,84 +1,79 @@
 /**
- * cache-buster.js
- * ----------------
- * Добавляет к CSS и JS в HTML файлах параметр ?v=<hash>.
- * Hash вычисляется из содержимого файла — если файл не менялся,
- * хеш не меняется, кеш остаётся. Если файл изменился — хеш новый,
- * браузер загрузит обновлённую версию.
- *
- * Запуск:
- *   node js/cache-buster.js [путь_к_папке]
- *   По умолчанию: ./ (текущая папка)
+ * Тестовый запуск: применяет cache-buster ко всем HTML файлам
+ * и выводит результат для проверки.
  */
-
 const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
 const TARGET_DIR = process.argv[2] || '.';
-const CSS_JS_EXTENSIONS = /\.(css|js)$/;
+const DEPLOY_DATE = process.argv[3] || new Date()
+    .toISOString()
+    .slice(0, 10)
+    .replace(/-/g, '');
 
-/** Вычисляет короткое хеш-значение файла */
 function fileHash(filePath) {
     const content = fs.readFileSync(filePath);
     return crypto.createHash('md5').update(content).digest('hex').substring(0, 8);
 }
 
-/** Заменяет href/src на версию с хешем */
-function addVersionToAsset(html, assetPath) {
-    const fullPath = path.resolve(path.dirname(html), assetPath);
+function addVersionToHtml(html, dir, assetPath) {
+    if (/^(https?:|data:|\/\/)/.test(assetPath)) return html;
+    const fullPath = path.resolve(dir, assetPath);
     if (!fs.existsSync(fullPath)) return html;
-
     const hash = fileHash(fullPath);
     const separator = assetPath.includes('?') ? '&' : '?';
-    const old = assetPath;
-    const newAsset = `${assetPath}${separator}v=${hash}`;
-
-    // Обновляем все ссылки на этот файл в HTML
-    const escaped = old.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    const regex = new RegExp(`(href|src)=["']${escaped}["']`, 'gi');
-    return html.replace(regex, `$1="${newAsset}"`);
+    const newAsset = assetPath + separator + 'v=' + hash;
+    const escaped = assetPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const re = new RegExp('((?:href|src)=["\x27])' + escaped + '(["\x27])', 'g');
+    return html.replace(re, '$1' + newAsset + '$2');
 }
 
-/** Обрабатывает один HTML-файл */
+function updateContentVersionMeta(html) {
+    const replacement = '<meta name="content-version" content="' + DEPLOY_DATE + '" />';
+    const metaRe = /<meta\s+name=["']content-version["'][^>]*\/?>/i;
+    if (metaRe.test(html)) {
+        return html.replace(metaRe, replacement);
+    }
+    const headIdx = html.indexOf('</head>');
+    if (headIdx !== -1) {
+        return html.slice(0, headIdx) + '\n    ' + replacement + '\n' + html.slice(headIdx);
+    }
+    return html;
+}
+
 function processHtmlFile(filePath) {
-    let content = fs.readFileSync(filePath, 'utf8');
-    let changed = false;
+    let html = fs.readFileSync(filePath, 'utf8');
+    let dir = path.dirname(filePath);
 
-    // Ищем href="..." и src="..." для CSS и JS
-    const regex = /(href|src)="([^"]*(?:\.css|\.js))"/gi;
-    let match;
+    // 1. Обновляем content-version
+    html = updateContentVersionMeta(html);
+
+    // 2. Добавляем ?v= к CSS и JS ссылкам
+    const re = /((?:href|src)=["'])([^"']*?\.css[^"']*|[^"']*?\.js[^"']*)(["'])/gi;
+    let m;
     const matches = [];
-    while ((match = regex.exec(content)) !== null) {
-        matches.push({ full: match[0], attr: match[1], path: match[2] });
+    while ((m = re.exec(html)) !== null) {
+        if (/^(https?:|data:|\/\/)/.test(m[2])) continue;
+        matches.push(m[2]);
     }
 
-    for (const m of matches) {
-        // Пропускаем внешние ссылки (http/https) и data:
-        if (/^(https?:|data:|\/\/)/.test(m.path)) continue;
-
-        const result = addVersionToAsset(filePath, m.path);
-        if (result !== content) changed = true;
-        content = result;
+    for (let i = 0; i < matches.length; i++) {
+        html = addVersionToHtml(html, dir, matches[i]);
     }
 
-    if (changed) {
-        fs.writeFileSync(filePath, content, 'utf8');
-        console.log(`  Updated: ${path.relative(TARGET_DIR, filePath)}`);
-    }
-
-    return changed;
+    fs.writeFileSync(filePath, html, 'utf8');
+    console.log('Updated: ' + path.relative(TARGET_DIR, filePath));
 }
 
-/** Рекурсивный обход папок */
 function walkDir(dir) {
     let results = [];
     const entries = fs.readdirSync(dir, { withFileTypes: true });
-    for (const entry of entries) {
+    for (let i = 0; i < entries.length; i++) {
+        const entry = entries[i];
         const fullPath = path.join(dir, entry.name);
         if (entry.isDirectory()) {
-            // Пропускаем служебные папки
-            if (['node_modules', '.git', '.github', 'node_modules'].includes(entry.name)) continue;
+            if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === '.github') continue;
             results = results.concat(walkDir(fullPath));
         } else if (entry.name.endsWith('.html')) {
             results.push(fullPath);
@@ -88,16 +83,17 @@ function walkDir(dir) {
 }
 
 function main() {
-    console.log(`Cache buster: ${TARGET_DIR}`);
+    console.log('Cache buster: ' + TARGET_DIR + ' (deploy date: ' + DEPLOY_DATE + ')');
     const files = walkDir(TARGET_DIR);
-    console.log(`Found ${files.length} HTML files\n`);
+    console.log('Found ' + files.length + ' HTML files\n');
 
     let updated = 0;
-    for (const file of files) {
-        if (processHtmlFile(file)) updated++;
+    for (let i = 0; i < files.length; i++) {
+        processHtmlFile(files[i]);
+        updated++;
     }
 
-    console.log(`\nUpdated: ${updated} files`);
+    console.log('\nUpdated: ' + updated + ' files');
 }
 
 main();

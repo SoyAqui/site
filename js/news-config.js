@@ -10,6 +10,23 @@
  */
 
 window.newsData = [
+      {
+    id: 'news-27',
+    title: 'Божественная Литургия в Неделю 20 по Пятидесятнице',
+    thumbnail: 'assets/images/news/news_27/news-27-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg'      
+    ]
+  },
 
     {
     id: 'news-26',

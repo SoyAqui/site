@@ -5,7 +5,10 @@
   "scripts": {
     "thumbnails": "node js/generate-thumbnails.js",
     "favicon": "node js/generate-favicon.js",
-    "sitemap": "node js/generate-sitemap.js"
+    "sitemap": "node js/generate-sitemap.js",
+    "build": "node js/build.js",
+    "cache-bust": "node js/cache-buster.js",
+    "update-images": "node js/update-images.js"
   },
   "keywords": [],
   "author": "",

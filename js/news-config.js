@@ -10,8 +10,23 @@
  */
 
 window.newsData = [
+   {
+    id: 'news-29',
+    title: 'Занятия в старшей детской группе Воскресной школы провел отец Роман',
+    thumbnail: 'assets/images/news/news_29/news-29-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',           
+    ]
+  },
 
-  {
+ {
     id: 'news-28',
     title: 'Отец Сергий и сёстры милосердия в гостях у маленьких пациентов больницы Андрея Первозванного',
     thumbnail: 'assets/images/news/news_28/news-28-thumb.webp',
@@ -23,8 +38,7 @@ window.newsData = [
       '5.jpg',
       '6.jpg',
       '7.jpg',
-      '8.jpg',
-      '9.jpg'            
+      '8.jpg'    
     ]
   },
   

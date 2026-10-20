@@ -39,7 +39,7 @@ jobs:
         git config --local user.name "github-actions[bot]"
         git add -A
         git commit -m "chore: update asset hashes" || echo "No changes to commit"
-        git push
+        git push --force-with-lease
 
     # 3. GitHub отправляет их по FTP на Timeweb
     - name: Sync files via FTP

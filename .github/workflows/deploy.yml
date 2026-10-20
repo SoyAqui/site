@@ -33,6 +33,14 @@ jobs:
     - name: Update image versions (add ?v=DATE to images in HTML)
       run: node js/update-images.js
 
+    - name: Commit and push asset hash changes
+      run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git add -A
+        git commit -m "chore: update asset hashes" || echo "No changes to commit"
+        git push
+
     # 3. GitHub отправляет их по FTP на Timeweb
     - name: Sync files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5

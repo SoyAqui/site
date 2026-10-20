@@ -10,7 +10,25 @@
  */
 
 window.newsData = [
-      {
+
+  {
+    id: 'news-28',
+    title: 'Отец Сергий и сёстры милосердия в гостях у маленьких пациентов больницы Андрея Первозванного',
+    thumbnail: 'assets/images/news/news_28/news-28-thumb.webp',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg'            
+    ]
+  },
+  
+  {
     id: 'news-27',
     title: 'Божественная Литургия в Неделю 20 по Пятидесятнице',
     thumbnail: 'assets/images/news/news_27/news-27-thumb.webp',

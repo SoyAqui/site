@@ -22,8 +22,10 @@ function addVersionToHtml(html, dir, assetPath) {
     const fullPath = path.resolve(dir, assetPath);
     if (!fs.existsSync(fullPath)) return html;
     const hash = fileHash(fullPath);
-    const separator = assetPath.includes('?') ? '&' : '?';
-    const newAsset = assetPath + separator + 'v=' + hash;
+    // Убираем старый ?v=..., если есть, чтобы не накапливать несколько параметров
+    const baseAsset = assetPath.replace(/[?&]v=[^&"]*/g, '');
+    const separator = baseAsset.includes('?') ? '&' : '?';
+    const newAsset = baseAsset + separator + 'v=' + hash;
     const escaped = assetPath.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const re = new RegExp('((?:href|src)=["\x27])' + escaped + '(["\x27])', 'g');
     return html.replace(re, '$1' + newAsset + '$2');

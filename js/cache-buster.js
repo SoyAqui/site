@@ -19,7 +19,9 @@ function fileHash(filePath) {
 
 function addVersionToHtml(html, dir, assetPath) {
     if (/^(https?:|data:|\/\/)/.test(assetPath)) return html;
-    const fullPath = path.resolve(dir, assetPath);
+    // Извлекаем path без query string для поиска файла
+    const cleanPath = assetPath.split('?')[0];
+    const fullPath = path.resolve(dir, cleanPath);
     if (!fs.existsSync(fullPath)) return html;
     const hash = fileHash(fullPath);
     // Убираем старый ?v=..., если есть, чтобы не накапливать несколько параметров
@@ -62,6 +64,18 @@ function processHtmlFile(filePath) {
 
     for (let i = 0; i < matches.length; i++) {
         html = addVersionToHtml(html, dir, matches[i]);
+    }
+
+    // 3. Добавляем ?v= к изображениям контента (news, announcements)
+    const imgRe = /((?:href|src)=["'])([^"']*?(?:assets\/images\/news|assets\/images\/announcements)[^"']*)/gi;
+    let imgM;
+    const imgMatches = [];
+    while ((imgM = imgRe.exec(html)) !== null) {
+        if (/^(https?:|data:|\/\/)/.test(imgM[2])) continue;
+        imgMatches.push(imgM[2]);
+    }
+    for (let i = 0; i < imgMatches.length; i++) {
+        html = addVersionToHtml(html, dir, imgMatches[i]);
     }
 
     fs.writeFileSync(filePath, html, 'utf8');

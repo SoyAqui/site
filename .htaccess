@@ -6,7 +6,7 @@
 
   # === HTML: must-revalidate (проверка при каждом визите) ===
   <FilesMatch "\.html?$">
-    Header set Cache-Control "must-revalidate"
+    Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
 
   # === Изображения контента (без ?v=): cache + revalidate ===

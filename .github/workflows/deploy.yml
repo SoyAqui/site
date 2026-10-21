@@ -1,6 +1,5 @@
-name: Deploy HTML Site to Timeweb
+name: Deploy to Timeweb
 
-# Скрипт запускается сам при каждом push в ветку main
 on:
   push:
     branches:
@@ -8,41 +7,12 @@ on:
 
 jobs:
   deploy:
-    name: Upload Files
     runs-on: ubuntu-latest
 
     steps:
-    # 1. GitHub скачивает файлы из репозитория
-    - name: Get latest code
-      uses: actions/checkout@v4
-      with:
-        fetch-depth: 2
+    - uses: actions/checkout@v4
 
-    # 2. Установка зависимостей и запуск cache-buster
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22'
-    
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Run cache buster (add ?v=<hash> to CSS/JS in HTML)
-      run: node js/cache-buster.js .
-
-    - name: Update image versions (add ?v=DATE to images in HTML)
-      run: node js/update-images.js
-
-    - name: Commit and push asset hash changes
-      run: |
-        git config --local user.email "github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add -A
-        git commit -m "chore: update asset hashes" || echo "No changes to commit"
-        git push --force-with-lease
-
-    # 3. GitHub отправляет их по FTP на Timeweb
-    - name: Sync files via FTP
+    - name: Sync to Timeweb
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.FTP_SERVER }}
@@ -50,11 +20,7 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         protocol: ftp
         port: 21
-        
-        # Путь к сайту на Timeweb (относительно home)
         server-dir: site_apostolandrey/public_html/
-        
-        # Игнорируем служебные файлы
         exclude: |
           **/.git*
           **/.git*/**

@@ -29,11 +29,14 @@ const IMAGE_EXTENSIONS = /\.(jpg|jpeg|png|webp|gif|svg)$/i;
 
 function updateImagesInHtml(html) {
     // Паттерн для img src="..."
-    const imgRe = /<img\s+[^>]*src="([^"]+)"[^>]*\/?>/gi;
+    const imgRe = /<img\s+[^>]*src="([^"]+)"[^>]*\/?\>/gi;
     // Паттерн для src в <source> тегах
-    const sourceRe = /<source\s+[^>]*src="([^"]+)"[^>]*\/?>/gi;
+    const sourceRe = /<source\s+[^>]*src="([^"]+)"[^>]*\/?\>/gi;
     // Паттерн для любых href/src с изображениями
     const anySrcRe = /((?:href|src)=["'])([^"']+)(["'])/gi;
+
+    // Пропускаем изображения контента — их обрабатывает cache-buster.js
+    const SKIP_DIRS = /assets\/(images\/news|images\/announcements)\//;
 
     let changed = false;
     let match;
@@ -41,7 +44,7 @@ function updateImagesInHtml(html) {
     // 1. Обрабатываем img src
     while ((match = imgRe.exec(html)) !== null) {
         const src = match[2];
-        if (IMAGE_EXTENSIONS.test(src)) {
+        if (IMAGE_EXTENSIONS.test(src) && !SKIP_DIRS.test(src)) {
             const newSrc = addVersionToUrl(src);
             if (newSrc !== src) {
                 html = html.replace(match[0], match[0].replace(src, newSrc));
@@ -53,7 +56,7 @@ function updateImagesInHtml(html) {
     // 2. Обрабатываем source src
     while ((match = sourceRe.exec(html)) !== null) {
         const src = match[2];
-        if (IMAGE_EXTENSIONS.test(src)) {
+        if (IMAGE_EXTENSIONS.test(src) && !SKIP_DIRS.test(src)) {
             const newSrc = addVersionToUrl(src);
             if (newSrc !== src) {
                 html = html.replace(match[0], match[0].replace(src, newSrc));
@@ -71,7 +74,8 @@ function updateImagesInHtml(html) {
         // Пропускаем уже обработанные (CSS, JS)
         if (/\.css$|\.js$/.test(url)) continue;
 
-        if (IMAGE_EXTENSIONS.test(url)) {
+        // Пропускаем изображения контента (news/announcements) — обрабатывает cache-buster.js
+        if (IMAGE_EXTENSIONS.test(url) && !SKIP_DIRS.test(url)) {
             const newUrl = addVersionToUrl(url);
             if (newUrl !== url) {
                 html = html.replace(attr + url + quote, attr + newUrl + quote);

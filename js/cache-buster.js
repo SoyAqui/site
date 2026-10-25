@@ -82,6 +82,41 @@ function processHtmlFile(filePath) {
     console.log('Updated: ' + path.relative(TARGET_DIR, filePath));
 }
 
+function processJsFile(filePath) {
+    let js = fs.readFileSync(filePath, 'utf8');
+    let dir = path.dirname(filePath);
+
+    // Ищем пути к изображениям контента (news, announcements) в JS
+    const jsImgRe = /['"]([^'"]*(?:assets\/images\/news|assets\/images\/announcements)[^'"]*)['"]/g;
+    let m;
+    const matches = [];
+    while ((m = jsImgRe.exec(js)) !== null) {
+        if (/^(https?:|data:|\/\/)/.test(m[1])) continue;
+        matches.push(m[1]);
+    }
+
+    for (let i = 0; i < matches.length; i++) {
+        // Извлекаем path без query string для поиска файла
+        const cleanPath = matches[i].split('?')[0];
+        // Путь относительный от корня проекта, а не от директории JS
+        const fullPath = path.resolve(TARGET_DIR, cleanPath);
+        if (!fs.existsSync(fullPath)) continue;
+        const stat = fs.statSync(fullPath);
+        if (stat.isDirectory()) continue;
+        const hash = fileHash(fullPath);
+        // Убираем старый ?v=...
+        const baseAsset = matches[i].replace(/[?&]v=[^"]*/g, '');
+        const separator = baseAsset.includes('?') ? '&' : '?';
+        const newAsset = baseAsset + separator + 'v=' + hash;
+        const escaped = matches[i].replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const re = new RegExp("['\"]" + escaped + "['\"]", 'g');
+        js = js.replace(re, "'" + newAsset + "'");
+    }
+
+    fs.writeFileSync(filePath, js, 'utf8');
+    console.log('Updated JS: ' + path.relative(TARGET_DIR, filePath));
+}
+
 function walkDir(dir) {
     let results = [];
     const entries = fs.readdirSync(dir, { withFileTypes: true });
@@ -92,7 +127,9 @@ function walkDir(dir) {
             if (entry.name === 'node_modules' || entry.name === '.git' || entry.name === '.github') continue;
             results = results.concat(walkDir(fullPath));
         } else if (entry.name.endsWith('.html')) {
-            results.push(fullPath);
+            results.push({ path: fullPath, type: 'html' });
+        } else if (entry.name.endsWith('.js') && !entry.name.endsWith('.min.js')) {
+            results.push({ path: fullPath, type: 'js' });
         }
     }
     return results;
@@ -101,11 +138,16 @@ function walkDir(dir) {
 function main() {
     console.log('Cache buster: ' + TARGET_DIR + ' (deploy date: ' + DEPLOY_DATE + ')');
     const files = walkDir(TARGET_DIR);
-    console.log('Found ' + files.length + ' HTML files\n');
+    console.log('Found ' + files.length + ' files\n');
 
     let updated = 0;
     for (let i = 0; i < files.length; i++) {
-        processHtmlFile(files[i]);
+        const file = files[i];
+        if (file.type === 'html') {
+            processHtmlFile(file.path);
+        } else if (file.type === 'js') {
+            processJsFile(file.path);
+        }
         updated++;
     }
 

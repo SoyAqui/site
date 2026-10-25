@@ -13,7 +13,7 @@ window.newsData = [
    {
     id: 'news-29',
     title: 'Занятия в старшей детской группе Воскресной школы провел отец Роман',
-    thumbnail: 'assets/images/news/news_29/news-29-thumb.webp',
+    thumbnail: 'assets/images/news/news_29/news-29-thumb.webp?v=498066f2',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -29,7 +29,7 @@ window.newsData = [
  {
     id: 'news-28',
     title: 'Отец Сергий и сёстры милосердия в гостях у маленьких пациентов больницы Андрея Первозванного',
-    thumbnail: 'assets/images/news/news_28/news-28-thumb.webp',
+    thumbnail: 'assets/images/news/news_28/news-28-thumb.webp?v=29d4961c',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -45,7 +45,7 @@ window.newsData = [
   {
     id: 'news-27',
     title: 'Божественная Литургия в Неделю 20 по Пятидесятнице',
-    thumbnail: 'assets/images/news/news_27/news-27-thumb.webp',
+    thumbnail: 'assets/images/news/news_27/news-27-thumb.webp?v=5f831941',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -63,7 +63,7 @@ window.newsData = [
     {
     id: 'news-26',
     title: 'Всенощное бдение и Божественная Литургия в день празднования Покрова Пресвятой Владычицы нашей Богородицы и Приснодевы Марии',
-    thumbnail: 'assets/images/news/news_26/news-26-thumb.webp',
+    thumbnail: 'assets/images/news/news_26/news-26-thumb.webp?v=80a67e47',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -82,7 +82,7 @@ window.newsData = [
 {
     id: 'news-25',
     title: 'Посещение детского стационара больницы имени Святого Апостола Андрея Первозванного',
-    thumbnail: 'assets/images/news/news_25/news-25-thumb.webp',
+    thumbnail: 'assets/images/news/news_25/news-25-thumb.webp?v=89f39035',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -97,7 +97,7 @@ window.newsData = [
 {
     id: 'news-24',
     title: 'Всенощное бдение в канун недели 19-й по Пятидесятнице и Божественная Литургия в Храме Святого Апостола Андрея Первозванного!',
-    thumbnail: 'assets/images/news/news_24/news-24-thumb.webp',
+    thumbnail: 'assets/images/news/news_24/news-24-thumb.webp?v=6058068f',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -115,7 +115,7 @@ window.newsData = [
 {
     id: 'news-23',
     title: 'Духовенство третьего благочиния совершили молебен с акафистом перед ковчегом с частью Пояса Пресвятой Богородицы в Спасо-Вознесенском соборе',
-    thumbnail: 'assets/images/news/news_23/news-23-thumb.webp',
+    thumbnail: 'assets/images/news/news_23/news-23-thumb.webp?v=c62edbdd',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -130,7 +130,7 @@ window.newsData = [
 {
     id: 'news-22',
     title: 'Посещение детского стационара больницы имени Святого Апостола Андрея Первозванного!',
-    thumbnail: 'assets/images/news/news_22/news-22-thumb.webp',
+    thumbnail: 'assets/images/news/news_22/news-22-thumb.webp?v=0b93f9ef',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -146,7 +146,7 @@ window.newsData = [
 {
     id: 'news-21',
     title: 'Всенощное бдение в канун дня празднования Всемирного Воздвижения Честного и Животворящего Креста Господня ',
-    thumbnail: 'assets/images/news/news_21/news-21-thumb.webp',
+    thumbnail: 'assets/images/news/news_21/news-21-thumb.webp?v=98e5f7c1',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -162,7 +162,7 @@ window.newsData = [
 {
     id: 'news-20',
     title: 'Посещение госпиталя',
-    thumbnail: 'assets/images/news/news_20/news-20-thumb.webp',
+    thumbnail: 'assets/images/news/news_20/news-20-thumb.webp?v=a96a0e90',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -179,7 +179,7 @@ window.newsData = [
   {
     id: 'news-19',
     title: 'Божественная Литургия в день празднования Рождества Пресвятой Владычицы нашей Богородицы и Приснодевы Марии',
-    thumbnail: 'assets/images/news/news_19/news-19-thumb.webp',
+    thumbnail: 'assets/images/news/news_19/news-19-thumb.webp?v=e6e40d5c',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -196,7 +196,7 @@ window.newsData = [
   {
     id: 'news-18',
     title: 'Всенощное бдение в канун дня празднования Рождества Пресвятой Владычицы нашей Богородицы и Приснодевы Марии',
-    thumbnail: 'assets/images/news/news_18/news-18-thumb.webp',
+    thumbnail: 'assets/images/news/news_18/news-18-thumb.webp?v=5936f694',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -213,7 +213,7 @@ window.newsData = [
   {
     id: 'news-17',
     title: 'Неделя 16 по Пятидесятнице, пред Воздвижением',
-    thumbnail: 'assets/images/news/news_17/news-17-thumb.webp',
+    thumbnail: 'assets/images/news/news_17/news-17-thumb.webp?v=ab8a6308',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -230,7 +230,7 @@ window.newsData = [
   {
     id: 'news-16',
     title: 'Посещение военного госпиталя',
-    thumbnail: 'assets/images/news/news_16/news-16-thumb.webp',
+    thumbnail: 'assets/images/news/news_16/news-16-thumb.webp?v=29e5cf31',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -240,7 +240,7 @@ window.newsData = [
   {
     id: 'news-15',
     title: 'Память святой мученицы Наталии',
-    thumbnail: 'assets/images/news/news_15/news-15-thumb.webp',
+    thumbnail: 'assets/images/news/news_15/news-15-thumb.webp?v=e76b2f60',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -256,7 +256,7 @@ window.newsData = [
   {
     id: 'news-14',
     title: 'Мы встречали гостей из Саратова',
-    thumbnail: 'assets/images/news/news_14/news-14-thumb.webp',
+    thumbnail: 'assets/images/news/news_14/news-14-thumb.webp?v=ab0a182e',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -273,14 +273,14 @@ window.newsData = [
   {
     id: 'news-13',
     title: 'Обращение Святейшего Патриарха Московского и всея Руси Кирилла ',
-    thumbnail: 'assets/images/news/news_13/news-13-thumb.webp',
+    thumbnail: 'assets/images/news/news_13/news-13-thumb.webp?v=4400df8b',
     photos: [
     ]
   },
   {
     id: 'news-12',
     title: 'Неделя 14 по Пятидесятнице. Божественная Литургия',
-    thumbnail: 'assets/images/news/news_12/news-12-thumb.webp',
+    thumbnail: 'assets/images/news/news_12/news-12-thumb.webp?v=19fc4ecd',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -294,7 +294,7 @@ window.newsData = [
   {
     id: 'news-11',
     title: 'Подарки детям перед началом учебного года',
-    thumbnail: 'assets/images/news/news_11/news-11-thumb.webp',
+    thumbnail: 'assets/images/news/news_11/news-11-thumb.webp?v=ac33ced5',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -308,7 +308,7 @@ window.newsData = [
   {
     id: 'news-10',
     title: 'Божественная литургия и молебен перед началом учебного года',
-    thumbnail: 'assets/images/news/news_10/news-10-thumb.webp',
+    thumbnail: 'assets/images/news/news_10/news-10-thumb.webp?v=638ab92a',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -323,7 +323,7 @@ window.newsData = [
   {
     id: 'news-9',
     title: 'Литургия на праздник Успения Пресвятой Богородицы.',
-    thumbnail: 'assets/images/news/news_9/news-9-thumb.webp',
+    thumbnail: 'assets/images/news/news_9/news-9-thumb.webp?v=f59cf4bb',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -340,7 +340,7 @@ window.newsData = [
   {
     id: 'news-8',
     title: 'Крестный ход с Плащаницей Пресвятой Богородицы.',
-    thumbnail: 'assets/images/news/news_8/news-8-thumb.webp',
+    thumbnail: 'assets/images/news/news_8/news-8-thumb.webp?v=be38eb77',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -357,7 +357,7 @@ window.newsData = [
   {        
     id: 'news-7',
     title: 'Всенощное бдение на Праздник Успения Пресвятой Богородицы',
-    thumbnail: 'assets/images/news/news_7/news-7-thumb.webp',
+    thumbnail: 'assets/images/news/news_7/news-7-thumb.webp?v=577f8096',
     photos: [
       '3fiEJBciSc2db_5lZAdxBDg6bV9fGjy5CkjfZBLdEegd6jQWdsf56G6SDa_mZZaA_a_4izsP5H_pFYo97vBKUsVl.jpg',
       'ExciGz-oRb7wzH44rLQVJQjv_0bpCqDJm96olYD-TELJLwESw4vjugtpFpAyJHcEvr3SJ9ZtXeYjvOVAs10j4pld.jpg',
@@ -374,7 +374,7 @@ window.newsData = [
   {
     id: 'news-6',
     title: 'Молебен в больнице Святого Апостола Андрея Первозванного',
-    thumbnail: 'assets/images/news/news_6/news-6-thumb.webp',
+    thumbnail: 'assets/images/news/news_6/news-6-thumb.webp?v=ca440d6b',
     photos: [
       '1.jpg',
       '2.jpg',
@@ -390,7 +390,7 @@ window.newsData = [
   {
     id: 'news-5',
     title: 'Паломническая поездка в г. Казань',
-    thumbnail: 'assets/images/news/news_5/news-5-thumb.webp',
+    thumbnail: 'assets/images/news/news_5/news-5-thumb.webp?v=c24ae74c',
     photos: [
           '1.jpg',
           '2.jpg',
@@ -405,7 +405,7 @@ window.newsData = [
   {
     id: 'news-4',
     title: 'Божественная литургия в храме Святого Апостола Андрея Первозванного!',
-    thumbnail: 'assets/images/news/news_4/news-4-thumb.webp',
+    thumbnail: 'assets/images/news/news_4/news-4-thumb.webp?v=eec8c330',
     photos: [
         '1.jpg',
         '2.jpg',
@@ -420,7 +420,7 @@ window.newsData = [
   {
     id: 'news-3',
     title: 'Молебен св. блаженной Матроне',
-    thumbnail: 'assets/images/news/news_3/news-3-thumb.webp',
+    thumbnail: 'assets/images/news/news_3/news-3-thumb.webp?v=dc9bf24b',
     photos: [
           '1.jpg',
           '2.jpg',
@@ -433,7 +433,7 @@ window.newsData = [
   {
     id: 'news-2',
     title: 'Крестный ход',
-    thumbnail: 'assets/images/news/news_2/news-2-thumb.webp',
+    thumbnail: 'assets/images/news/news_2/news-2-thumb.webp?v=69313770',
     photos: [
         '1.jpg',
         '2.jpg',
@@ -447,7 +447,7 @@ window.newsData = [
   {
     id: 'news-1',
     title: 'Божественная литургия в храме во имя святого пророка Илии г. Ульяновска',
-    thumbnail: 'assets/images/news/news_1/news-1-thumb.webp',
+    thumbnail: 'assets/images/news/news_1/news-1-thumb.webp?v=a20a52d1',
     photos: [
       '1.jpg',
       '2.jpg',

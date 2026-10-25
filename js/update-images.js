@@ -43,8 +43,9 @@ function updateImagesInHtml(html) {
 
     // 1. Обрабатываем img src
     while ((match = imgRe.exec(html)) !== null) {
-        const src = match[2];
-        if (IMAGE_EXTENSIONS.test(src) && !SKIP_DIRS.test(src)) {
+        const src = match[1];
+        const cleanSrc = src.split('?')[0];
+        if (IMAGE_EXTENSIONS.test(cleanSrc) && !SKIP_DIRS.test(src)) {
             const newSrc = addVersionToUrl(src);
             if (newSrc !== src) {
                 html = html.replace(match[0], match[0].replace(src, newSrc));
@@ -55,8 +56,9 @@ function updateImagesInHtml(html) {
 
     // 2. Обрабатываем source src
     while ((match = sourceRe.exec(html)) !== null) {
-        const src = match[2];
-        if (IMAGE_EXTENSIONS.test(src) && !SKIP_DIRS.test(src)) {
+        const src = match[1];
+        const cleanSrc = src.split('?')[0];
+        if (IMAGE_EXTENSIONS.test(cleanSrc) && !SKIP_DIRS.test(src)) {
             const newSrc = addVersionToUrl(src);
             if (newSrc !== src) {
                 html = html.replace(match[0], match[0].replace(src, newSrc));
@@ -75,7 +77,8 @@ function updateImagesInHtml(html) {
         if (/\.css$|\.js$/.test(url)) continue;
 
         // Пропускаем изображения контента (news/announcements) — обрабатывает cache-buster.js
-        if (IMAGE_EXTENSIONS.test(url) && !SKIP_DIRS.test(url)) {
+        const cleanUrl = url.split('?')[0];
+        if (IMAGE_EXTENSIONS.test(cleanUrl) && !SKIP_DIRS.test(url)) {
             const newUrl = addVersionToUrl(url);
             if (newUrl !== url) {
                 html = html.replace(attr + url + quote, attr + newUrl + quote);
@@ -91,7 +94,7 @@ function addVersionToUrl(url) {
     // Если уже есть ?v=, обновляем дату
     const vMatch = url.match(/(\?v=)[^&]*/);
     if (vMatch) {
-        return url.replace(vMatch[0], '$1' + DEPLOY_DATE);
+        return url.replace(vMatch[0], '?v=' + DEPLOY_DATE);
     }
     // Иначе добавляем
     const separator = url.includes('?') ? '&' : '?';

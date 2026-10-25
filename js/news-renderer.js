@@ -296,6 +296,3 @@ function updatePagination(paginationDiv, current, total) {
 }
 
 // Устаревшая функция (оставлена для совместимости)
-function renderNewsArchive(container, items) {
-    renderNewsArchivePaginated(container, items);
-}

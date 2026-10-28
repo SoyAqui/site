@@ -10,6 +10,25 @@
  */
 
 window.newsData = [
+
+     {
+    id: 'news-30',
+    title: 'Божественная Литургия в Неделю 21 по Пятидесятнице',
+    thumbnail: 'assets/images/news/news_30/news-30-thumb.webp?v=b51877e6',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg'           
+    ]
+  },
+
+
    {
     id: 'news-29',
     title: 'Занятия в старшей детской группе Воскресной школы провел отец Роман',
@@ -22,7 +41,7 @@ window.newsData = [
       '5.jpg',
       '6.jpg',
       '7.jpg',
-      '8.jpg',           
+      '8.jpg'           
     ]
   },
 

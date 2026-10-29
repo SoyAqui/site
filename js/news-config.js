@@ -10,6 +10,33 @@
  */
 
 window.newsData = [
+  {
+    id: 'news-32',
+    title: '~ Поздравляем о. Романа со священнической хиротонией! ~',
+    thumbnail: 'assets/images/news/news_32/news-32-thumb.webp?v=437ca9c7',
+    photos: [
+      '1.jpg'  
+    ]
+  },
+
+
+  {
+    id: 'news-31',
+    title: 'Состоялась поездка воспитанников воскресной школы нашего храма в с. Ундоры!',
+    thumbnail: 'assets/images/news/news_31/news-31-thumb.webp?v=e9e6ab6f',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg'      
+    ]
+  },
 
      {
     id: 'news-30',

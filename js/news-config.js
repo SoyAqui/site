@@ -10,6 +10,23 @@
  */
 
 window.newsData = [
+    {
+    id: 'news-33',
+    title: 'Божественная Литургия в Неделю 22 по Пятидесятнице',
+    thumbnail: 'assets/images/news/news_33/news-33-thumb.webp?v=23b8b12c',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg'      
+    ]
+  },
   {
     id: 'news-32',
     title: '~ Поздравляем о. Романа со священнической хиротонией! ~',

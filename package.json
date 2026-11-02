@@ -1,6 +1,6 @@
 {
-  "name": "syte2.0",
-  "version": "2.0.0",
+  "name": "syte3.0",
+  "version": "3.0.0",
   "description": "Сайт прихода православного храма",
   "scripts": {
     "thumbnails": "node js/generate-thumbnails.js",
@@ -8,7 +8,8 @@
     "sitemap": "node js/generate-sitemap.js",
     "build": "node js/build.js",
     "cache-bust": "node js/cache-buster.js",
-    "update-images": "node js/update-images.js"
+    "update-images": "node js/update-images.js",
+        "resize-announcements": "node js/resize-announcements.js"
   },
   "keywords": [],
   "author": "",

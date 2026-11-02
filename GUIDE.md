@@ -27,7 +27,8 @@ site/
 │   ├── burger-menu.js       ← Мобильное меню
 │   ├── constrain-calendar.js ← Календарь pravoslavie.ru
 │   ├── generate-thumbnails.js ← WebP-превью для фото
-│   └── generate-sitemap.js  ← Генерация sitemap.xml
+│   ├── generate-sitemap.js  ← Генерация sitemap.xml
+│   ├── resize-announcements.js ← Изменение размера объявлений до 869×1318
 ├── css/
 │   └── style.min.css        ← Основные стили
 ├── assets/
@@ -136,6 +137,22 @@ window.announcements = [
 
 ---
 
+## 🖼️ Изменение размера объявлений
+
+Если формат объявлений изменился и все картинки нужно привести к единому размеру:
+
+```bash
+# Пропорционально вписать в 869×1318 (без искажения)
+npm run resize-announcements
+
+# Обрезать/заполнить до ровно 869×1318
+node js/resize-announcements.js --fill
+```
+
+Обработка проходит на месте: исходные файлы заменяются на обработанные.
+
+---
+
 ## 🎨 Фавикон
 
 Чтобы обновить favicon:
@@ -181,6 +198,7 @@ window.announcements = [
 | `npm run thumbnails` | WebP-превью для фото новостей |
 | `npm run sitemap` | Генерация sitemap.xml |
 | `npm run favicon` | Создание favicon из исходника |
+| `npm run resize-announcements` | Масштабирование .jpg в announcements до 869×1318 |
 
 ---
 

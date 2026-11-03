@@ -5,11 +5,13 @@
   "scripts": {
     "thumbnails": "node js/generate-thumbnails.js",
     "favicon": "node js/generate-favicon.js",
-    "sitemap": "node js/generate-sitemap.js",
+    "update-news-seo": "node js/update-news-seo.js",
+        "sitemap": "node js/update-sitemap.js",
     "build": "node js/build.js",
     "cache-bust": "node js/cache-buster.js",
     "update-images": "node js/update-images.js",
-        "resize-announcements": "node js/resize-announcements.js"
+        "resize-announcements": "node js/resize-announcements.js",
+            "update-news-seo": "node js/update-news-seo.js"
   },
   "keywords": [],
   "author": "",

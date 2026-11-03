@@ -27,8 +27,9 @@ site/
 │   ├── burger-menu.js       ← Мобильное меню
 │   ├── constrain-calendar.js ← Календарь pravoslavie.ru
 │   ├── generate-thumbnails.js ← WebP-превью для фото
-│   ├── generate-sitemap.js  ← Генерация sitemap.xml
+│   ├── update-sitemap.js      ← Обновление sitemap.xml (changefreq, lastmod из JSON-LD)
 │   ├── resize-announcements.js ← Изменение размера объявлений до 869×1318
+│   ├── update-news-seo.js     ← SEO: title, description, JSON-LD для новостей
 ├── css/
 │   └── style.min.css        ← Основные стили
 ├── assets/
@@ -54,8 +55,7 @@ site/
 Заполните:
 - `<h1>` — заголовок новости
 - `<p>` — текст
-- `<meta name="description">` — краткое описание
-- `<meta property="og:title">` — заголовок для соцсетей
+- `<meta property="article:published_time">` — дата публикации (формат YYYY-MM-DD)
 
 ### 2. Добавьте фото (если нужно)
 
@@ -86,11 +86,12 @@ site/
 - `photos` — массив имён файлов (без пути и расширения). Если фото не нужны — удалите это поле.
 - Порядок в массиве — порядок отображения в галерее
 
-### 4. Соберите и деплойте
+### 4. SEO и сборка
 
 ```bash
-npm run build        # Content hash + дата деплоя
-npm run sitemap      # Обновить sitemap.xml
+npm run update-news-seo   # title, description, JSON-LD из конфига
+npm run sitemap           # changefreq и lastmod для sitemap
+npm run build             # Content hash + дата деплоя
 git add .
 git commit -m "Добавлена новость N"
 git push origin main
@@ -137,7 +138,35 @@ window.announcements = [
 
 ---
 
-## 🖼️ Изменение размера объявлений
+## 📰 SEO-команды
+
+### Обновление SEO новостей
+
+После добавления новой новости в `js/news-config.js` запустите:
+
+```bash
+npm run update-news-seo
+```
+
+Скрипт автоматически:
+- Заполняет `title`, `og:title`, `description`, `og:description` из конфига
+- Добавляет JSON-LD `NewsArticle` в каждую новость
+- Убирает маркеры `~` из заголовков
+
+### Обновление sitemap.xml
+
+После добавления или изменения новостей запустите:
+
+```bash
+npm run sitemap
+```
+
+Скрипт автоматически:
+- Ставит `changefreq: weekly` для новостей младше 30 дней
+- Ставит `changefreq: monthly` для старых новостей
+- Берёт `lastmod` из JSON-LD `datePublished` каждой новости
+
+### Изменение размера объявлений
 
 Если формат объявлений изменился и все картинки нужно привести к единому размеру:
 
@@ -196,9 +225,10 @@ node js/resize-announcements.js --fill
 | `npm run cache-bust` | Content hash для CSS/JS/news/announcements |
 | `npm run update-images` | Дата деплоя для остальных изображений |
 | `npm run thumbnails` | WebP-превью для фото новостей |
-| `npm run sitemap` | Генерация sitemap.xml |
+| `npm run sitemap` | Обновление sitemap.xml (changefreq из дат JSON-LD) |
 | `npm run favicon` | Создание favicon из исходника |
 | `npm run resize-announcements` | Масштабирование .jpg в announcements до 869×1318 |
+| `npm run update-news-seo` | SEO: title, description, JSON-LD для всех новостей |
 
 ---
 
@@ -218,6 +248,7 @@ node js/resize-announcements.js --fill
 - [ ] Добавлены фото в `assets/images/news/news_N/`
 - [ ] Запущен `npm run thumbnails` (если новые фото)
 - [ ] Добавлена запись в `js/news-config.js`
+- [ ] Запущен `npm run update-news-seo` (title, description, JSON-LD)
 - [ ] Запущен `npm run build`
 - [ ] Запущен `npm run sitemap`
 - [ ] Проверено: новость появилась на главной?

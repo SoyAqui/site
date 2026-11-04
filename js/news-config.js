@@ -11,8 +11,25 @@
 
 window.newsData = [
   {
+    id: 'news-35',
+    title: 'Всенощное бдение в канун праздника Казанской иконы Божией Матери',
+    thumbnail: 'assets/images/news/news_35/news-35-thumb.webp?v=b238db44',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg'
+    ]
+  },
+  {
     id: 'news-34',
-    title: 'молебен Святому Стилиану',
+    title: 'Молебен преподобному Стилиану Пафлагонскому',
     thumbnail: 'assets/images/news/news_34/news-34-thumb.webp?v=3479b2c1',
     photos: [
       '1.jpg',

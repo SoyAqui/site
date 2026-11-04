@@ -67,6 +67,12 @@
         <priority>0.4</priority>
     </url>
     <url>
+        <loc>https://apostolandrey.ru/news/news-35.html</loc>
+        <lastmod>2026-01-01</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.4</priority>
+    </url>
+    <url>
         <loc>https://apostolandrey.ru/news/news-34.html</loc>
         <lastmod>2026-11-03</lastmod>
         <changefreq>weekly</changefreq>

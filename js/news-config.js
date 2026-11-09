@@ -10,6 +10,23 @@
  */
 
 window.newsData = [
+    {
+    id: 'news-36',
+    title: 'Божественная Литургия в Неделю 23 по Пятидесятнице',
+    thumbnail: 'assets/images/news/news_36/news-36-thumb.webp?v=27aede83',
+    photos: [
+      '1.jpg',
+      '2.jpg',
+      '3.jpg',
+      '4.jpg',
+      '5.jpg',
+      '6.jpg',
+      '7.jpg',
+      '8.jpg',
+      '9.jpg',
+      '10.jpg'
+    ]
+  },
   {
     id: 'news-35',
     title: 'Всенощное бдение в канун праздника Казанской иконы Божией Матери',

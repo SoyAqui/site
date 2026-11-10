@@ -24,13 +24,18 @@ const configById = {};
 let newsConfig = [];
 try {
     const configContent = fs.readFileSync(CONFIG_PATH, 'utf8');
-    // Извлекаем id/title из JS-файла (не JSON, regex надёжнее)
-    const entries = configContent.match(/id:\s*'([^']+)',[\s\S]*?title:\s*'([^']+?)'/g) || [];
+    // Извлекаем id/title/date из JS-файла (не JSON, regex надежнее)
+    const entries = configContent.match(/id:\s*'([^']+)',[\s\S]*?title:\s*'([^']+?)',?\s*[\s\S]*?date:\s*'([^']+?)'/g) || [];
     for (const e of entries) {
         const idMatch = e.match(/id:\s*'([^']+)'/);
         const titleMatch = e.match(/title:\s*'([^']+?)'/);
+        const dateMatch = e.match(/date:\s*'([^']+?)'/);
         if (idMatch && titleMatch) {
-            configById[idMatch[1]] = { id: idMatch[1], title: titleMatch[1] };
+            configById[idMatch[1]] = { 
+                id: idMatch[1], 
+                title: titleMatch[1],
+                date: dateMatch ? dateMatch[1] : null
+            };
         }
     }
     console.log('Loaded ' + Object.keys(configById).length + ' news items from config');
@@ -100,8 +105,12 @@ function updateNewsPage(filePath, newsId) {
 
     // Извлекаем данные
     const firstParagraph = extractFirstParagraph(html);
-    const publishDate = extractDate(html);
     const config = configById[newsId];
+    
+    // Дата: из конфига优先, иначе из HTML, иначе сегодня
+    const publishDate = config?.date 
+        ? config.date 
+        : (extractDate(html) || new Date().toISOString().slice(0, 10));
 
     // Заголовок новости (из <h1> в <article>)
     const h1Match = html.match(/<article>[\s\S]*?<h1>([\s\S]*?)<\/h1>/);

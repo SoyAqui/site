@@ -9,7 +9,60 @@
  *   fullPageUrl   — путь к полной новости (если не задан, вычисляется как news/<id>.html)
  */
 
-window.newsData = [{
+window.newsData = [
+    {
+  id: 'news-37',
+  title: 'Сегодня в воскресной школе нашего Храма прошли занятие для детей и их родителей!',
+  date: '2026-11-16',
+  thumbnail: 'assets/images/news/news_37/news-37-thumb.webp?v=dc1d4965',
+  photos: [
+    '1.jpg',
+    '2.jpg',
+    '3.jpg',
+    '4.jpg',
+    '5.jpg',
+    '6.jpg',
+    '7.jpg'      
+  ]
+},
+  {
+  id: 'news-36',
+  title: 'Божественная Литургия в Неделю 23 по Пятидесятнице',
+  date: '2026-11-11',
+  thumbnail: 'assets/images/news/news_36/news-36-thumb.webp?v=27aede83',
+  photos: [
+    '1.jpg',
+    '2.jpg',
+    '3.jpg',
+    '4.jpg',
+    '5.jpg',
+    '6.jpg',
+    '7.jpg',
+    '8.jpg',
+    '9.jpg',
+    '10.jpg'      
+  ]
+},
+  {
+  id: 'news-35',
+  title: 'Всенощное бдение в канун праздника Казанской иконы Божией Матери',
+  date: '2026-11-10',
+  thumbnail: 'assets/images/news/news_35/news-35-thumb.webp?v=b238db44',
+  photos: [
+    '1.jpg',
+    '2.jpg',
+    '3.jpg',
+    '4.jpg',
+    '5.jpg',
+    '6.jpg',
+    '7.jpg',
+    '8.jpg',
+    '9.jpg',
+    '10.jpg'      
+  ]
+},
+
+  {
     id: 'news-34',
     title: 'Молебен преподобному Стилиану Пафлагонскому',
     date: '2026-11-09',
@@ -53,7 +106,6 @@ window.newsData = [{
       '1.jpg'  
     ]
   },
-
 
   {
     id: 'news-31',

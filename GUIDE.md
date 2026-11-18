@@ -234,10 +234,11 @@ node js/resize-announcements.js --fill
 
 ## 🚀 Деплой
 
+Билд запускается **локально перед push** (`npm run build`), GitHub Actions только загружает файлы:
+
 При push в `main` GitHub Actions:
-1. Запускает `npm run build`
-2. Загружает файлы на Timeweb по FTP
-3. Исключает: `.git`, `.github`, `README.md`, `node_modules`, `package*.json`
+1. Загружает файлы на Timeweb по FTP
+2. Исключает: `.git`, `.github`, `README.md`, `GUIDE.md`, `node_modules`, `package*.json`
 
 ---
 

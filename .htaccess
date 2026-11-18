@@ -1,21 +1,24 @@
+<IfModule mod_setenvif.c>
+  # Если у ресурса есть параметр ?v= (content-hash или дата деплоя),
+  # URL меняется при каждом изменении файла — можно кэшировать навсегда.
+  SetEnvIf QUERY_STRING "(^|&)v=" HAS_VERSION
+</IfModule>
+
 <IfModule mod_headers.c>
-  # === Статика: long-term caching (1 год, immutable) ===
+  # === Статика и контентные изображения С версией: long-term caching (1 год, immutable) ===
   <FilesMatch "\.(css|js|jpg|jpeg|png|webp|gif|svg|woff2?|ttf|eot|ico)$">
-    Header set Cache-Control "public, max-age=31536000, immutable"
+    Header set Cache-Control "public, max-age=31536000, immutable" env=HAS_VERSION
+  </FilesMatch>
+
+  # === Изображения контента БЕЗ версии: moderate TTL, чтобы браузер
+  # не показывал устаревшие фото навсегда ===
+  <FilesMatch "\.(jpg|jpeg|png|webp|gif|svg)$">
+    Header set Cache-Control "public, max-age=86400" env=!HAS_VERSION
   </FilesMatch>
 
   # === HTML: must-revalidate (проверка при каждом визите) ===
   <FilesMatch "\.html?$">
     Header set Cache-Control "no-cache, must-revalidate"
-  </FilesMatch>
-
-  # === Изображения контента (без ?v=): cache + revalidate ===
-  # Если контентные изображения не имеют версии, даём им
-  # moderate TTL, чтобы браузер не показывал устаревшие фото
-  # навсегда. Контентные изображения с ?v= обрабатываются
-  # выше (immutable).
-  <FilesMatch "^(assets/images/news|assets/images/announcements)">
-    Header set Cache-Control "public, max-age=86400"
   </FilesMatch>
 </IfModule>
 

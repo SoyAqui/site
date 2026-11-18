@@ -1,6 +1,7 @@
 /**
- * Тестовый запуск: применяет cache-buster ко всем HTML файлам
- * и выводит результат для проверки.
+ * Cache-buster: добавляет к локальным ресурсам в HTML параметр ?v=<hash>,
+ * где hash — первые 8 символов MD5 содержимого файла. Меняет также
+ * meta content-version на дату деплоя. Запускается через `npm run build`.
  */
 const fs = require('fs');
 const path = require('path');
